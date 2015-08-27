@@ -12,6 +12,6 @@
  * @link          https://github.com/museudecienciasunicamp/mexc_news.git Mexc News public repository
  */
 
-class MexcNewsAppController extends MexcAppController
+class MexcNewsAppController extends RedeAppController
 {
 }

@@ -29,6 +29,13 @@ class MexcNew extends MexcNewsAppModel
 				'content_stream_id' => 'new'
 			)
 		),
+		'UnifiedSearch.Searcheable' => array(
+			'contain' => array('MexcSpace')
+		),
+		'Temp.TempTemp' => array(
+			'field' => 'is_temp',
+			'modifiedBefore' => 1
+		),
 		'MexcRelated.MexcHasRelatedContent' => array(
 			'MexcDocuments.MexcDocument',
 			'MexcGalleries.MexcGallery',
@@ -69,7 +76,6 @@ class MexcNew extends MexcNewsAppModel
 		return $this->save($data, false);
 	}
 	
-	
 /**
  * The data that must be saved into the dashboard. Part of the Dashboard contract.
  * 
@@ -108,5 +114,11 @@ class MexcNew extends MexcNewsAppModel
 	{
 		$data = $this->findById($id);
 		return $this->delete($id);
+	}
+
+	function beforeSave() {
+		if (isset($this->data[$this->alias]['mexc_space_id']) && $this->data[$this->alias]['mexc_space_id'] == '')
+			$this->data[$this->alias]['mexc_space_id'] = null;
+		return true;
 	}
 }

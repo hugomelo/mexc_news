@@ -108,8 +108,8 @@ echo $this->Buro->sform(array(), array(
 				'dateFormat' => 'DMY',
 				'timeFormat' => false,
 				'separator' => '',
-				'minYear' => date('Y')-50,
-				'maxYear' => date('Y')
+				'minYear' => date('Y')-10,
+				'maxYear' => date('Y')+4,
 			),
 			'label' => __d('mexc_new', 'form - date label', true),
 			'instructions' => __d('mexc_new', 'form - date instructions', true)

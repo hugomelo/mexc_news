@@ -30,6 +30,30 @@ switch ($type[0])
 		
 	break;
 	
+	case 'preview':
+		switch ($type[1])
+		{
+			case 'unified_search':
+				//$mexcNew = ClassRegistry::init('MexcNews.MexcNew');
+				//$data = $mexcNew->find('first', array(
+					//'contain' => array(),
+					//'conditions' => array('MexcNew.id' => $data)
+				//));
+				//if (empty($data)) return;
+				//else $new = $data['MexcNew'];
+				$new = $data['SblSearchItem'];
+
+				echo $this->Bl->h6(array('class' => 'post-type'), array(), 'Novidade');
+				if (!empty($data['MexcSpace']['FactSite'][0]['name']))
+					echo $this->Bl->div(array('class' => 'project'), array(), $data['MexcSpace']['FactSite'][0]['name']);
+				echo $this->Bl->div(array('class' => 'post-date'), array(), date('d/m/Y',strtotime($new['date'])));
+				echo $this->Bl->h5(array('class' => 'title'), array(), $new['title']);
+				echo $this->Bl->div(array('class' => 'post-body'), array(), $new['summary']);
+				echo $this->Bl->div(array('class' => 'post-footer-hidder'));
+			break;
+		}
+	break;
+
 	case 'columns':
 		$size['M'] = $type[1];
 		$buffer = array();
@@ -111,34 +135,6 @@ switch ($type[0])
 			echo $this->Bl->img(array(), $options);
 		}
 		echo $this->Bl->paraDry(explode("\n", $data['MexcNew']['summary']));
-	break;
-	
-	case 'column_olimpiada':
-		$data_mostrada = date('m/d/Y', strtotime($data['MexcNew']['date']));
-		echo $mexc->data($data_mostrada, 'longo');
-		echo $this->Bl->br();
-		
-		echo $this->Bl->sh4();
-			echo $this->Bl->anchor(
-				array('class' => 'link_texto link_em_nuvem'), 
-				array('url' => array(
-					'edicao' => $edicao, 'controller' => 'blog', 'plugin' => 'olimpiada', 'action' => 'novidade#'. $data['MexcNew']['id'])
-				),
-				$data['MexcNew']['title']
-			);
-		echo $this->Bl->eh4();
-		echo $this->Bl->br();
-		
-		echo $this->Bl->paraDry(explode("\n", $data['MexcNew']['summary']));
-		
-		if (!empty($data['MexcNew']['img_id']))
-		{
-			$options['id'] = $data['MexcNew']['img_id'];
-			$options['version'] = 'preview_column';
-			echo $this->Bl->img(array('class' => 'blog_imagem'), $options);
-		}
-		echo $this->Bl->floatBreak();
-		
 	break;
 	
 	case 'column_grande_desafio':

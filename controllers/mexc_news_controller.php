@@ -49,9 +49,6 @@ class MexcNewsController extends MexcNewsAppController
  */
 	function index()
 	{
-		if ($this->currentSpace == 'museu' || empty($this->currentSpace))
-			$this->read_science_news();
-		
 		$conditions = $this->MexcSpace->getConditionsForSpaceFiltering($this->currentSpace);
 		$mexc_news = $this->paginate('MexcNew', $conditions);
 		$this->set(compact('mexc_news'));
@@ -61,24 +58,25 @@ class MexcNewsController extends MexcNewsAppController
  * action read
  * 
  * @access public
- * @param string $mexc_new_id The MexcNew id
+ * @param string $id The MexcNew id
  * @return void 
  */
-	function read($mexc_new_id = false)
+	function read($id = false)
 	{
-		if (empty($mexc_new_id))
-			$this->cakeError('error404');
+		if (empty($id))
+			$this->redirect('/');
 		
 		$conditions = $this->MexcSpace->getConditionsForSpaceFiltering($this->currentSpace);
 		$new = $this->MexcNew->find('first', array(
 			'contain' => array('Tag', 'MexcRelatedContent'),
 			'conditions' => array(
-				'MexcNew.id' => $mexc_new_id,
+				'MexcNew.id' => $id,
 				'MexcNew.date <=' => date('Y-m-d')
 			) + $conditions
 		));
-		if (empty($new))
-			$this->cakeError('error404');
+		
+		if (empty($id))
+			$this->redirect('/');
 		
 		$this->SectSectionHandler->addToPageTitleArray(array(null, null, $new['MexcNew']['title']));
 
@@ -87,7 +85,7 @@ class MexcNewsController extends MexcNewsAppController
 			'contain' => false,
 			'limit' => 4,
 			'conditions' => array(
-				'not' => array('MexcNew.id' => am($mexc_new_id, $related_news_ids)
+				'not' => array('MexcNew.id' => am($id, $related_news_ids)
 			))
 		));
 		
