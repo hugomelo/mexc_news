@@ -34,21 +34,14 @@ switch ($type[0])
 		switch ($type[1])
 		{
 			case 'unified_search':
-				//$mexcNew = ClassRegistry::init('MexcNews.MexcNew');
-				//$data = $mexcNew->find('first', array(
-					//'contain' => array(),
-					//'conditions' => array('MexcNew.id' => $data)
-				//));
-				//if (empty($data)) return;
-				//else $new = $data['MexcNew'];
-				$new = $data['SblSearchItem'];
+				$item = $data['SblSearchItem'];
 
 				echo $this->Bl->h6(array('class' => 'post-type'), array(), 'Novidade');
 				if (!empty($data['MexcSpace']['FactSite'][0]['name']))
 					echo $this->Bl->div(array('class' => 'project'), array(), $data['MexcSpace']['FactSite'][0]['name']);
-				echo $this->Bl->div(array('class' => 'post-date'), array(), date('d/m/Y',strtotime($new['date'])));
-				echo $this->Bl->h5(array('class' => 'title'), array(), $new['title']);
-				echo $this->Bl->div(array('class' => 'post-body'), array(), $new['summary']);
+				echo $this->Bl->div(array('class' => 'post-date'), array(), date('d/m/Y',strtotime($item['date'])));
+				echo $this->Bl->h5(array('class' => 'title'), array(), $item['title']);
+				echo $this->Bl->div(array('class' => 'post-body'), array(), $item['summary']);
 				echo $this->Bl->div(array('class' => 'post-footer-hidder'));
 			break;
 		}
