@@ -64,7 +64,7 @@ class MexcNewsController extends MexcNewsAppController
 	function read($id = false)
 	{
 		if (empty($id))
-			$this->redirect('/');
+			$this->redirect('/novidades');
 		
 		$conditions = $this->MexcSpace->getConditionsForSpaceFiltering($this->currentSpace);
 		$new = $this->MexcNew->find('first', array(
@@ -76,7 +76,7 @@ class MexcNewsController extends MexcNewsAppController
 		));
 		
 		if (empty($id))
-			$this->redirect('/');
+			$this->redirect('/novidades');
 		
 		$this->SectSectionHandler->addToPageTitleArray(array(null, null, $new['MexcNew']['title']));
 

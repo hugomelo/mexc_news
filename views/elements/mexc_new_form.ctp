@@ -11,6 +11,8 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  * @link          https://github.com/museudecienciasunicamp/mexc_news.git Mexc News public repository
  */
+echo $this->Html->script("jquery.min");
+echo $this->Html->script("ralsp");
 
 echo $this->Buro->sform(array(), array(
 		'model' => $fullModelName,
@@ -174,7 +176,7 @@ echo $this->Buro->sform(array(), array(
 	
 	// Summary	
 	echo $this->Buro->input(
-		array(),
+		array('maxlength' => 400, 'class' => 'summary'),
 		array(
 			'fieldName' => 'summary',
 			'type' => 'textarea',
@@ -184,6 +186,9 @@ echo $this->Buro->sform(array(), array(
 		)
 	);
 		
+	// chars counter
+	echo $this->Bl->div(array('id' => 'chars-counter'));
+
 	// Related contents
 	echo $this->Buro->inputMexcRelatedContent();
 	
