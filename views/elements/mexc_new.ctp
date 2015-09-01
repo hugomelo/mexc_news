@@ -35,6 +35,7 @@ switch ($type[0])
 			case 'unified_search':
 				if (isset($data['MexcNew'])) {
 					$item = $data['MexcNew'];
+					debug($data);
 					$url = array('plugin' => 'mexc_news', 'controller' => 'mexc_news', 'action' => 'read', $item['id']);
 				}
 				else {

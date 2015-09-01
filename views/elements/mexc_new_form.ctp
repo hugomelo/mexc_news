@@ -32,6 +32,29 @@ echo $this->Buro->sform(array(), array(
 		)
 	);
 	
+	// New headline
+	echo $this->Buro->input(
+		array(),
+		array(
+			'fieldName' => 'title',
+			'label' => __d('mexc_new', 'form - title label', true),
+			'instructions' => __d('mexc_new', 'form - title instructions', true)
+		)
+	);
+	
+	// Author name
+	echo $this->Buro->input(
+		array(),
+		array(
+			'fieldName' => 'author',
+			'label' => __d('mexc_new', 'form - author label', true),
+			'instructions' => __d('mexc_new', 'form - author instructions', true),
+			'options' => array(
+				'default' => $userData['name']
+			)
+		)
+	);
+	
 	// Space tag
 	echo $this->Buro->input(
 		array(),
@@ -61,29 +84,6 @@ echo $this->Buro->sform(array(), array(
 				'fact_site' => 'Só no espaço',
 				'private' => 'Privado'
 			))
-		)
-	);
-	
-	// New headline
-	echo $this->Buro->input(
-		array(),
-		array(
-			'fieldName' => 'title',
-			'label' => __d('mexc_new', 'form - title label', true),
-			'instructions' => __d('mexc_new', 'form - title instructions', true)
-		)
-	);
-	
-	// Author name
-	echo $this->Buro->input(
-		array(),
-		array(
-			'fieldName' => 'author',
-			'label' => __d('mexc_new', 'form - author label', true),
-			'instructions' => __d('mexc_new', 'form - author instructions', true),
-			'options' => array(
-				'default' => $userData['name']
-			)
 		)
 	);
 	
@@ -120,42 +120,42 @@ echo $this->Buro->sform(array(), array(
 	
 	// Main image
 	
-	echo $this->Buro->sinput(null, array(
-		'type' => 'super_field',
-		'label' => __d('mexc_new', 'form - image label', true),
-		'instructions' => __d('mexc_new', 'form - image instructions', true)
-	));	
+	//echo $this->Buro->sinput(null, array(
+		//'type' => 'super_field',
+		//'label' => __d('mexc_new', 'form - image label', true),
+		//'instructions' => __d('mexc_new', 'form - image instructions', true)
+	//));	
 	
-		echo $this->Buro->input(
-			array(),
-			array(
-				'fieldName' => 'img_id',
-				'type' => 'image',
-				'label' => __d('mexc_new', 'Arquivo de imagem', true),
-				'instructions' => __d('mexc_new', 'Escolha o arquivo da imagem', true),
-				'options' => array(
-					'version' => 'backstage_preview'
-				)
-			)
-		);
+		//echo $this->Buro->input(
+			//array(),
+			//array(
+				//'fieldName' => 'img_id',
+				//'type' => 'image',
+				//'label' => __d('mexc_new', 'Arquivo de imagem', true),
+				//'instructions' => __d('mexc_new', 'Escolha o arquivo da imagem', true),
+				//'options' => array(
+					//'version' => 'backstage_preview'
+				//)
+			//)
+		//);
 	
-		echo $this->Buro->input(array('value' => '0', 'id' => 'embed_picture_'), array('type' => 'hidden', 'fieldName' => 'embed_picture'));
-		echo $this->Buro->input(
-			array(),
-			array(
-				'fieldName' => 'embed_picture',
-				'type' => 'checkbox',
-				'label' => '',
-				'options' => array(
-					'label' => 'Usar essa imagem <b>também</b> na página da notícia?',
-					'hiddenField' => false,
-					'escape' => false,
-					'default' => true
-				),
-			)
-		);
+		//echo $this->Buro->input(array('value' => '0', 'id' => 'embed_picture_'), array('type' => 'hidden', 'fieldName' => 'embed_picture'));
+		//echo $this->Buro->input(
+			//array(),
+			//array(
+				//'fieldName' => 'embed_picture',
+				//'type' => 'checkbox',
+				//'label' => '',
+				//'options' => array(
+					//'label' => 'Usar essa imagem <b>também</b> na página da notícia?',
+					//'hiddenField' => false,
+					//'escape' => false,
+					//'default' => true
+				//),
+			//)
+		//);
 
-		echo $this->Bl->floatBreak();
+		//echo $this->Bl->floatBreak();
 		
 	
 	echo $this->Buro->einput();
@@ -169,7 +169,8 @@ echo $this->Buro->sform(array(), array(
 			'label' => __d('mexc_new', 'form - content_stream label', true),
 			'instructions' => __d('mexc_new', 'form - content_stream instructions', true),
 			'options' => array(
-				'foreignKey' => 'content_stream_id'
+				'foreignKey' => 'content_stream_id',
+				'cs_type' => 'new',
 			)
 		)
 	);

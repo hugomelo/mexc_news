@@ -12,74 +12,41 @@
  * @link          https://github.com/museudecienciasunicamp/mexc_news.git Mexc News public repository
  */
 
-echo $this->Bl->sbox(array(), array('size' => array('M' => 6, 'g' => -1), 'type' => 'cloud'));
+echo $this->element('header-read', array('title' => $new['MexcNew']['title'], 'slug'=>'news'));
+
+echo $this->Bl->floatBreak();
+echo $this->Bl->srow(array('class' => 'pages news'));
+	echo $this->Bl->hr(array('class' => 'col-xs-12'));
 	
-	echo $this->Jodel->insertModule('MexcNews.MexcNew', array('full'), $new);
-	
-	echo $this->Bl->hr(array('class' => 'double'));
-	
-	// @todo Thread of comments
-	
-echo $this->Bl->ebox();
-
-
-echo $this->Bl->sbox(array('class' => 'more_content'), array('type' => 'sky', 'size' => array('M' => 6, 'g' => -1)));
-	// @todo Link to the right place
-	echo $this->Bl->anchor(
-		array('class' => 'non_visitable'),
-		array('url' => array('plugin' => 'mexc_news', 'controller' => 'mexc_news', 'action' => 'index')),
-		'Outras novidades do Museu'
-	);
-echo $this->Bl->ebox();
-
-
-$second_column = !empty($new['MexcRelatedContent']) || !empty($latest_news) || !empty($latest_events);
-
-if ($second_column)
-{
-	echo $this->Bl->sboxContainer(array(), array('size' => array('M' => 6)));
-	echo $this->Bl->h2Dry(__d('mexc', 'veja também', true));
-	echo $this->Bl->br();
-}
-
-if (!empty($new['MexcRelatedContent']))
-{
-	echo $this->Jodel->insertModule('MexcRelated.MexcRelatedContent', array('full', 6), $new);
-}
-
-
-if (!empty($latest_news))
-{
-	echo $this->Bl->sbox(array(), array('size' => array('M' => 3, 'g' => -1), 'type' => 'cloud'));
-		
-		echo $this->Bl->h5Dry(__d('mexc','Novidades mais recentes', true));
-		
-		foreach ($latest_news as $new)
-		{
-			echo $this->Bl->hr(array('class' => 'dotted'));
-			echo $this->Jodel->insertModule('MexcNews.MexcNew', array('two_lines'), $new);
+	echo $this->Bl->sdiv(array('class' => 'col-xs-12 col-md-3 meta'), array());
+		echo $this->Bl->div(array(), array(), 
+			br_strftime("%d de %B, %Y",strtotime($new['MexcNew']['date']))
+		);
+		echo $this->Bl->div(array(), array(), 
+			'por '.$new['MexcNew']['author']
+		);
+	echo $this->Bl->hr(array('class' => 'meta'));
+		if (isset($new['Tag'])) {
+			foreach($new['Tag'] as $tag) {
+				echo $this->Bl->anchor(array(), array('url' => '/tag/'.$tag['keyname']), $tag['name']);
+				if ($tag != end($new['Tag'])) echo ", ";
+			}
+			echo $this->Bl->hr(array('class' => 'meta'));
 		}
-		
-	echo $this->Bl->ebox();
-}
+	echo $this->Bl->ediv();
+	echo $this->Bl->sdiv(array('class' => 'col-xs-12 col-md-9'), array());
+		echo $this->Bl->srow(array('class' => ''));
+			echo $this->Jodel->insertModule('ContentStream.CsContentStream', array('full', 'mexc_new'), $new['MexcNew']['content_stream_id']);
+		echo $this->Bl->erow();
+	echo $this->Bl->ediv();
+	echo $this->Bl->hr(array('class' => 'col-xs-12'));
 
-if (!empty($latest_events))
-{
-	echo $this->Bl->sbox(array(), array('size' => array('M' => 3, 'g' => -1), 'type' => 'cloud'));
-		
-		echo $this->Bl->h5Dry(__d('mexc', 'Agenda', true));
-		
-		foreach ($latest_events as $event)
-		{
-			echo $this->Bl->hr(array('class' => 'dotted'));
-			echo $this->Jodel->insertModule('MexcEvents.MexcEvent', array('two_lines'), $event);
-		}
-		
-	echo $this->Bl->ebox();
-}
-
-if ($second_column)
-{
-	echo $this->Bl->eboxContainer();
-}
-
+	if (!empty($new['MexcRelatedContent'])) {
+		echo $this->Bl->h5(array('class' => 'related_content'), array(), 'Notícias relacionadas');
+		echo $this->Bl->sdiv(array('class' => 'col-xs-12 related_content'), array());
+			echo $this->Jodel->insertModule('MexcRelated.MexcRelatedContent', array('full'), $new);
+		echo $this->Bl->ediv();
+	}
+echo $this->Bl->erow();
+	
+	

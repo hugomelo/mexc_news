@@ -12,10 +12,7 @@
  * @link          https://github.com/museudecienciasunicamp/mexc_news.git Mexc News public repository
  */
 
-echo $this->Bl->floatBreak();
-echo $this->Bl->srow(array('class' => 'pages news'));
-	echo $this->element('header', array('title' => 'Novidades', 'slug'=>'news'));
-echo $this->Bl->erow();
+echo $this->element('header-index', array('title' => 'Novidades', 'slug'=>'news'));
 
 echo $this->Bl->srow(array('class' => 'pages news'));
 	echo $this->Bl->sdiv(array('class' => "posts-list"), array());
