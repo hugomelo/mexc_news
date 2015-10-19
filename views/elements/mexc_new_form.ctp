@@ -12,7 +12,7 @@
  * @link          https://github.com/museudecienciasunicamp/mexc_news.git Mexc News public repository
  */
 echo $this->Html->script("jquery.min");
-echo $this->Html->script("ralsp");
+echo $this->Html->script("ralsp_admin");
 
 echo $this->Buro->sform(array(), array(
 		'model' => $fullModelName,
