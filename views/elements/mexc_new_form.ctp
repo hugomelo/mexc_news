@@ -63,14 +63,6 @@ echo $this->Buro->sform(array(), array(
 		)
 	);
 	
-	// Hard relation with event?
-	echo $this->Buro->input(
-		array(),
-		array(
-			'type' => 'mexc_event'
-		)
-	);
-	
 	// Display Level
 	echo $this->Buro->input(
 		array(),
@@ -84,19 +76,6 @@ echo $this->Buro->sform(array(), array(
 				'fact_site' => 'Só no espaço',
 				'private' => 'Privado'
 			))
-		)
-	);
-	
-	// Tags
-	echo $this->Buro->input(array(), 
-		array(
-			'type' => 'tags',
-			'fieldName' => 'tags',
-			'label' => __d('mexc_new', 'form - tags input label', true),
-			'instructions' => __d('mexc_new', 'form - tags input instructions', true),
-			'options' => array(
-				'type' => 'comma'
-			)
 		)
 	);
 	
@@ -117,49 +96,6 @@ echo $this->Buro->sform(array(), array(
 			'instructions' => __d('mexc_new', 'form - date instructions', true)
 		)
 	);
-	
-	// Main image
-	
-	//echo $this->Buro->sinput(null, array(
-		//'type' => 'super_field',
-		//'label' => __d('mexc_new', 'form - image label', true),
-		//'instructions' => __d('mexc_new', 'form - image instructions', true)
-	//));	
-	
-		//echo $this->Buro->input(
-			//array(),
-			//array(
-				//'fieldName' => 'img_id',
-				//'type' => 'image',
-				//'label' => __d('mexc_new', 'Arquivo de imagem', true),
-				//'instructions' => __d('mexc_new', 'Escolha o arquivo da imagem', true),
-				//'options' => array(
-					//'version' => 'backstage_preview'
-				//)
-			//)
-		//);
-	
-		//echo $this->Buro->input(array('value' => '0', 'id' => 'embed_picture_'), array('type' => 'hidden', 'fieldName' => 'embed_picture'));
-		//echo $this->Buro->input(
-			//array(),
-			//array(
-				//'fieldName' => 'embed_picture',
-				//'type' => 'checkbox',
-				//'label' => '',
-				//'options' => array(
-					//'label' => 'Usar essa imagem <b>também</b> na página da notícia?',
-					//'hiddenField' => false,
-					//'escape' => false,
-					//'default' => true
-				//),
-			//)
-		//);
-
-		//echo $this->Bl->floatBreak();
-		
-	
-	echo $this->Buro->einput();
-	
 	
 	// Content stream
 	echo $this->Buro->input(
@@ -190,6 +126,19 @@ echo $this->Buro->sform(array(), array(
 	// chars counter
 	echo $this->Bl->div(array('id' => 'chars-counter'));
 
+	// Tags
+	echo $this->Buro->input(array(), 
+		array(
+			'type' => 'tags',
+			'fieldName' => 'tags',
+			'label' => __d('mexc_new', 'form - tags input label', true),
+			'instructions' => __d('mexc_new', 'form - tags input instructions', true),
+			'options' => array(
+				'type' => 'comma'
+			)
+		)
+	);
+	
 	// Related contents
 	echo $this->Buro->inputMexcRelatedContent();
 	
