@@ -75,30 +75,12 @@ class MexcNewsController extends MexcNewsAppController
 			) + $conditions
 		));
 		
-		if (empty($id))
+		if (empty($new))
 			$this->redirect('/novidades');
 		
 		$this->SectSectionHandler->addToPageTitleArray(array(null, null, $new['MexcNew']['title']));
 
-		$related_news_ids = Set::extract("/MexcNew/id", $new['MexcRelatedContent']);
-		$latest_news = $this->MexcNew->find('all', array(
-			'contain' => false,
-			'limit' => 4,
-			'conditions' => array(
-				'not' => array('MexcNew.id' => am($id, $related_news_ids)
-			))
-		));
-		
-		$related_events_ids = Set::extract("/MexcEvent/id", $new['MexcRelatedContent']);
-		$latest_events = $this->MexcEvent->find('all', array(
-			'contain' => false,
-			'limit' => 4,
-			'conditions' => array(
-				'not' => array('MexcEvent.id' => $related_events_ids)
-			)
-		));
-
-		$this->set(compact('new', 'latest_news', 'latest_events'));
+		$this->set(compact('new'));
 	}
 
 /**
