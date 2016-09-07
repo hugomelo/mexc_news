@@ -64,20 +64,20 @@ echo $this->Buro->sform(array(), array(
 	);
 	
 	// Display Level
-	echo $this->Buro->input(
-		array(),
-		array(
-			'fieldName' => 'display_level',
-			'type' => 'select',
-			'label' => __d('mexc_new', 'form - display level label', true),
-			'instructions' => __d('mexc_new', 'form - display level instructions', true),
-			'options' => array('options' => array (
-				'general' => 'Geral',
-				'fact_site' => 'Só no espaço',
-				'private' => 'Privado'
-			))
-		)
-	);
+	//echo $this->Buro->input(
+		//array(),
+		//array(
+			//'fieldName' => 'display_level',
+			//'type' => 'select',
+			//'label' => __d('mexc_new', 'form - display level label', true),
+			//'instructions' => __d('mexc_new', 'form - display level instructions', true),
+			//'options' => array('options' => array (
+				//'general' => 'Geral',
+				//'fact_site' => 'Só no espaço',
+				//'private' => 'Privado'
+			//))
+		//)
+	//);
 	
 	// Date
 	echo $this->Buro->input(
